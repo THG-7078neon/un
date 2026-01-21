@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bonne Année</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite;
+    }
+    p {
+      font-size: 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    .btn-retour {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn-retour:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎊 Bonne Année 2026 ! 🎊</h1>
+  <p id="message"></p>
+  <button class="btn-retour" onclick="retourAccueil()">⬅️ Retour à l’accueil</button>
+
+  <script>
+    // Message personnalisé
+    const params = new URLSearchParams(window.location.search);
+    const matricule = params.get("matricule");
+    if (matricule) {
+      document.getElementById("message").textContent =
+        "Cher(e) étudiant(e) " + matricule + ", que cette année vous apporte réussite et bonheur !";
+    } else {
+      document.getElementById("message").textContent =
+        "Que cette année vous apporte réussite et bonheur !";
+    }
+
+    // Génération de confettis
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.backgroundColor =
+        ["#ff0", "#0f0", "#0ff", "#f0f", "#f00", "#00f"][Math.floor(Math.random()*6)];
+      confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(confetti);
+
+      setTimeout(() => { confetti.remove(); }, 5000);
+    }
+    setInterval(createConfetti, 200);
+
+    // Fonction retour
+    function retourAccueil() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

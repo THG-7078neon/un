@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Récupération du Code AMCI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .warning {
+      color: #d9534f;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>RÉCUPÉREZ VOTRE CODE EN TOUTE SIMPLICITÉ</h1>
+    <label for="matricule">Entrez votre matricule</label>
+    <input type="text" id="matricule" placeholder="Votre matricule ou Votre nom">
+    <button onclick="recupererCode()">RÉCUPÉREZ VOTRE CODE</button>
+    <div class="warning">⚠️ Veuillez entrer un matricule valide.</div>
+  </div>
+
+  <script>
+    function recupererCode() {
+      const matricule = document.getElementById('matricule').value;
+      if (matricule.trim() === "") {
+        alert("Veuillez entrer votre matricule.");
+      } else {
+        // Redirection vers la page de vœux
+        window.location.href = "bonne-annee.html?matricule=" + encodeURIComponent(matricule);
+      }
+    }
+  </script>
+</body>
+</html>
